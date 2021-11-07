@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialLife.Data;
 
 namespace SocialLife.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211106144219_CreateInitialDbTables")]
+    partial class CreateInitialDbTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,21 +347,6 @@ namespace SocialLife.Data.Migrations
                     b.ToTable("Settings");
                 });
 
-            modelBuilder.Entity("SocialLife.Data.Models.UserFriend", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UsersFriendId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "UsersFriendId");
-
-                    b.HasIndex("UsersFriendId");
-
-                    b.ToTable("UserFriends");
-                });
-
             modelBuilder.Entity("SocialLife.Data.Models.UserLikedPost", b =>
                 {
                     b.Property<string>("UserId")
@@ -456,25 +443,6 @@ namespace SocialLife.Data.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("SocialLife.Data.Models.UserFriend", b =>
-                {
-                    b.HasOne("SocialLife.Data.Models.ApplicationUser", "User")
-                        .WithMany("UserFriends")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("SocialLife.Data.Models.ApplicationUser", "UsersFriend")
-                        .WithMany()
-                        .HasForeignKey("UsersFriendId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-
-                    b.Navigation("UsersFriend");
-                });
-
             modelBuilder.Entity("SocialLife.Data.Models.UserLikedPost", b =>
                 {
                     b.HasOne("SocialLife.Data.Models.Post", "LikedPost")
@@ -507,8 +475,6 @@ namespace SocialLife.Data.Migrations
                     b.Navigation("Posts");
 
                     b.Navigation("Roles");
-
-                    b.Navigation("UserFriends");
                 });
 
             modelBuilder.Entity("SocialLife.Data.Models.Post", b =>

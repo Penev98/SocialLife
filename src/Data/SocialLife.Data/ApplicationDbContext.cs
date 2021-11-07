@@ -26,6 +26,14 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Attachment> Attachments { get; set; }
+
+        public DbSet<UserLikedPost> UserLikedPosts { get; set; }
+
+        public DbSet<UserFriend> UserFriends { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -72,6 +80,12 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<ApplicationUser>()
+               .HasMany(x => x.Posts)
+               .WithOne(x => x.Author)
+               .HasForeignKey(x => x.AuthorId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
