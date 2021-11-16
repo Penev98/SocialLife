@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\SocialLife.Data.Common\SocialLife.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\SocialLife.Data.Models\SocialLife.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\SocialLife.Web.ViewModels\SocialLife.Web.ViewModels.csproj" />
     <ProjectReference Include="..\SocialLife.Services.Mapping\SocialLife.Services.Mapping.csproj" />
   </ItemGroup>
 

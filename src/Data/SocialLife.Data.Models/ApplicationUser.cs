@@ -3,7 +3,7 @@ namespace SocialLife.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
+    using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
     using SocialLife.Data.Common.Models;
 
@@ -30,6 +30,16 @@ namespace SocialLife.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        [MaxLength(50)]
+        public string LastName { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
