@@ -25,7 +25,8 @@
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            this.ViewBag.Models = this.postService.GetAllUserPosts<UserPostViewModel>(await this.GetUserId());
+            var userPosts = this.postService.GetAllUserPosts<UserPostViewModel>(await this.GetUserId());
+            this.ViewBag.Models = userPosts;
 
             return this.View();
         }
@@ -39,6 +40,21 @@
             await this.postService.CreatePostAsync(model, userId);
 
             return this.RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DeletePost(string id)
+        {
+            string userId = await this.GetUserId();
+
+            var result = await this.postService.DeleteUserPostAsyns(id, userId);
+
+            if (result)
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            return this.Json("Invalid operation attempt");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

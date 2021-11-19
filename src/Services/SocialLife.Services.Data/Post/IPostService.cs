@@ -11,5 +11,7 @@ namespace SocialLife.Services.Data
         public Task CreatePostAsync(CreatePostInputModel model, string authorId);
 
         public IEnumerable<T> GetAllUserPosts<T>(string userId);
+
+        public Task<bool> DeleteUserPostAsyns(string postId, string userId);
     }
 }

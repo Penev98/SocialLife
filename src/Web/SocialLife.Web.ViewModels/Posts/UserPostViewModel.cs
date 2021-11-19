@@ -8,6 +8,8 @@ namespace SocialLife.Web.ViewModels.Posts
 {
     public class UserPostViewModel : IMapFrom<Post>
     {
+        public string Id { get; set; }
+
         public int LikesCount { get; set; }
 
         public string TextContent { get; set; }

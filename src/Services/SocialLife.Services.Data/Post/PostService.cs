@@ -33,9 +33,33 @@
             await this.postsRepo.SaveChangesAsync();
         }
 
+        public async Task<bool> DeleteUserPostAsyns(string postId, string userId)
+        {
+            var userPosts = this.postsRepo.AllAsNoTracking().Where(x => x.AuthorId == userId).ToList();
+
+            if (userPosts != null)
+            {
+                var postToDelete = userPosts.FirstOrDefault(x => x.Id == postId);
+
+                if (postToDelete != null)
+                {
+                    this.postsRepo.HardDelete(postToDelete);
+                    await this.postsRepo.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public IEnumerable<T> GetAllUserPosts<T>(string userId)
         {
-            return this.postsRepo.AllAsNoTracking().Where(x => x.AuthorId == userId).OrderByDescending(x => x.CreatedOn).To<T>().ToList();
+            return this.postsRepo.AllAsNoTracking()
+                .Where(x => x.AuthorId == userId)
+                .OrderByDescending(x => x.CreatedOn)
+                .To<T>()
+                .ToList();
         }
     }
 }
