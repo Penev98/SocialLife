@@ -53,6 +53,27 @@
             return false;
         }
 
+        public async Task<bool> EditUserPostAsync(UserPostViewModel updatedPost, string userId)
+        {
+            var userPosts = this.postsRepo.All().Where(x => x.AuthorId == userId).ToList();
+
+            if (userPosts != null)
+            {
+                var postToEdit = userPosts.FirstOrDefault(x => x.Id == updatedPost.Id);
+
+                if (postToEdit != null)
+                {
+                    postToEdit.TextContent = updatedPost.TextContent;
+
+                    await this.postsRepo.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public IEnumerable<T> GetAllUserPosts<T>(string userId)
         {
             return this.postsRepo.AllAsNoTracking()

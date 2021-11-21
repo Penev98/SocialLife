@@ -57,6 +57,22 @@
             return this.Json("Invalid operation attempt");
         }
 
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> EditPost(UserPostViewModel updatedPost)
+        {
+            string userId = await this.GetUserId();
+
+            var result = await this.postService.EditUserPostAsync(updatedPost, userId);
+
+            if (result)
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            return this.Json("Invalid operation attempt");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

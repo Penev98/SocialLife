@@ -13,5 +13,8 @@ namespace SocialLife.Services.Data
         public IEnumerable<T> GetAllUserPosts<T>(string userId);
 
         public Task<bool> DeleteUserPostAsyns(string postId, string userId);
+
+        public Task<bool> EditUserPostAsync(UserPostViewModel updatedPost, string userId);
+
     }
 }
