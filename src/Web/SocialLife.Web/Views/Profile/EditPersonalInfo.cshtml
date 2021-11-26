@@ -1,0 +1,117 @@
+﻿@inject UserManager<ApplicationUser> userManager
+@model UpdateProfileInputModel
+@{
+    this.ViewData["Title"] = "Edit Profile";
+
+    var currentUser = await userManager.GetUserAsync(this.User);
+}
+
+<div class="container">
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                @if (currentUser.ProfilePictureUrl != null)
+                                {
+                                    <img class="profile-pic" src="/ProfilePictures/@currentUser.ProfilePictureUrl" alt="profile">
+                                }
+                                else
+                                {
+                                    <img class="profile-pic" src="/ProfilePictures/default.jpg" alt="profile">
+                                }
+                            </div>
+                            <h5 class="user-name">@currentUser.FirstName @currentUser.LastName </h5>
+                            <h6 class="user-email">@currentUser.Email</h6>
+                        </div>
+                        <div class="about">
+                            <h5>About</h5>
+                            <p>@currentUser.AboutDescription</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <form method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="FirstName">First Name</label>
+                                <input type="text" asp-for="FirstName" class="form-control" id="firstName" value="@currentUser.FirstName">
+                                <span class="text-danger" asp-validation-for="FirstName"></span>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="LastName">Last Name</label>
+                                <input asp-for="LastName" type="text" class="form-control" id="lastName" value="@currentUser.LastName">
+                                <span class="text-danger" asp-validation-for="LastName"></span>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber"></label>
+                                <input asp-for="PhoneNumber" type="text" value="@currentUser.PhoneNumber" class="form-control" id="phone" placeholder="Enter phone number">
+                                <span class="text-dangerr" asp-validation-for="PhoneNumber"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Country">Country</label>
+                                <input asp-for="Country" type="text" value="@currentUser.Country" class="form-control" id="country" placeholder="Enter Street">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="Region">Region</label>
+                                <input asp-for="Region" type="text" value="@currentUser.Region" class="form-control" id="region" placeholder="Enter Region">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="City">City</label>
+                                <input asp-for="City" type="text" value="@currentUser.City" class="form-control" id="city" placeholder="Enter City">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="PostalCode">Zip Code</label>
+                                <input asp-for="PostalCode" type="text" value="@currentUser.PostalCode" class="form-control" id="zIp" placeholder="Zip Code">
+                                <span class="text-danger" asp-validation-for="PostalCode"></span>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label asp-for="ProfilePicture">Add new profile picture</label>
+                                <input asp-for="ProfilePicture" type="file" class="form-control" id="profilePic" placeholder="Profile Pic">
+                                <span class="text-danger" asp-validation-for="ProfilePicture"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <a asp-controller="UserTimeline" asp-action="Index" id="submit" name="submit" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

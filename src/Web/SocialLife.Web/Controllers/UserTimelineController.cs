@@ -9,6 +9,7 @@
     using SocialLife.Data.Models;
     using SocialLife.Services.Data;
     using SocialLife.Web.ViewModels;
+    using SocialLife.Web.ViewModels.InputModels;
     using SocialLife.Web.ViewModels.Posts;
 
     public class UserTimelineController : BaseController
@@ -71,6 +72,11 @@
             }
 
             return this.Json("Invalid operation attempt");
+        }
+
+        public IActionResult Privacy()
+        {
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

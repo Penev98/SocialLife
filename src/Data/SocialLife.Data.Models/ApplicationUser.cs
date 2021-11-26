@@ -41,6 +41,25 @@ namespace SocialLife.Data.Models
         [MaxLength(50)]
         public string LastName { get; set; }
 
+        public string ProfilePictureUrl { get; set; }
+
+        [MaxLength(50)]
+        public string Country { get; set; }
+
+        [MaxLength(50)]
+        public string Region { get; set; }
+
+        [MaxLength(50)]
+        public string City { get; set; }
+
+        [MaxLength(5)]
+        public string PostalCode { get; set; }
+
+        [MaxLength(200)]
+        public string Address { get; set; }
+
+        public string AboutDescription { get; set; }
+
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }

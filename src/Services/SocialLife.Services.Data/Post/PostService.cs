@@ -9,6 +9,7 @@
     using SocialLife.Data.Common.Repositories;
     using SocialLife.Data.Models;
     using SocialLife.Services.Mapping;
+    using SocialLife.Web.ViewModels.InputModels;
     using SocialLife.Web.ViewModels.Posts;
 
     public class PostService : IPostService

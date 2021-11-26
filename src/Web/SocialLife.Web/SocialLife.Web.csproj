@@ -42,4 +42,10 @@
     <ProjectReference Include="..\SocialLife.Web.Infrastructure\SocialLife.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\SocialLife.Web.ViewModels\SocialLife.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\ProfilePictures\default.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

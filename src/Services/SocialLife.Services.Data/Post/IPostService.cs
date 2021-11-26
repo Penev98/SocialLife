@@ -1,4 +1,5 @@
-﻿using SocialLife.Web.ViewModels.Posts;
+﻿using SocialLife.Web.ViewModels.InputModels;
+using SocialLife.Web.ViewModels.Posts;
 using System;
 using System.Collections.Generic;
 using System.Text;

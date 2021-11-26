@@ -17,6 +17,8 @@
     using SocialLife.Data.Repositories;
     using SocialLife.Data.Seeding;
     using SocialLife.Services.Data;
+    using SocialLife.Services.Data.Pictures;
+    using SocialLife.Services.Data.Profile;
     using SocialLife.Services.Mapping;
     using SocialLife.Services.Messaging;
     using SocialLife.Web.ViewModels;
@@ -65,6 +67,8 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IPictureService, PictureService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
