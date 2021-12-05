@@ -45,10 +45,23 @@
 
             string webRoot = this.webHost.WebRootPath;
 
-            await this.pictureService.SaveProfilePictureAsync(model.ProfilePicture, webRoot);
-            await this.profileService.UpdateUserInfoAsync(model, userId, model.ProfilePicture.FileName);
+            if (model.ProfilePicture != null)
+            {
+                await this.pictureService.SaveProfilePictureAsync(model.ProfilePicture, webRoot);
+            }
 
-            return this.RedirectToAction("EditPersonalInfo");
+            await this.profileService.UpdateUserInfoAsync(model, userId, model.ProfilePicture == null ? string.Empty : model.ProfilePicture.FileName);
+
+            return this.Redirect("/");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> UpdateAbout(string aboutDescription)
+        {
+           await this.profileService.UpdateUserAboutAsync(this.User.FindFirstValue(ClaimTypes.NameIdentifier), aboutDescription);
+
+           return this.Redirect("/");
         }
     }
 }

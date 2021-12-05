@@ -13,6 +13,11 @@
         {
             IFormFile file = value as IFormFile;
 
+            if (file == null)
+            {
+                return true;
+            }
+
             if (!file.FileName.EndsWith(".png") && !file.FileName.EndsWith(".jpg"))
             {
                 return false;

@@ -19,6 +19,18 @@
             this.userRepo = userRepo;
         }
 
+        public async Task UpdateUserAboutAsync(string userId, string aboutDesc)
+        {
+            var user = this.userRepo.All().FirstOrDefault(x => x.Id == userId);
+
+            if (user != null)
+            {
+                user.AboutDescription = aboutDesc;
+            }
+
+            await this.userRepo.SaveChangesAsync();
+        }
+
         public async Task UpdateUserInfoAsync(UpdateProfileInputModel inputModel, string profileId, string profilePic)
         {
             var user = this.userRepo.All().FirstOrDefault(x => x.Id == profileId);
@@ -33,7 +45,11 @@
                 user.PostalCode = inputModel.PostalCode;
                 user.PhoneNumber = inputModel.PhoneNumber;
                 user.Address = inputModel.Address;
-                user.ProfilePictureUrl = profilePic;
+
+                if (profilePic != string.Empty)
+                {
+                    user.ProfilePictureUrl = profilePic;
+                }
 
                 await this.userRepo.SaveChangesAsync();
             }
