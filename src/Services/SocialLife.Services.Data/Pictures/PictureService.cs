@@ -10,9 +10,9 @@
 
     public class PictureService : IPictureService
     {
-        public async Task SaveProfilePictureAsync(IFormFile profilePicture, string webRoot)
+        public async Task SavePictureAsync(IFormFile profilePicture, string webRoot, string folderName)
         {
-            string picPath = webRoot + "\\ProfilePictures\\" + profilePicture.FileName;
+            string picPath = webRoot + folderName + profilePicture.FileName;
 
             using (FileStream fs = new FileStream(picPath, FileMode.Create))
             {

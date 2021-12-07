@@ -19,6 +19,30 @@
             this.userRepo = userRepo;
         }
 
+        public async Task RemoveUserProfilePictureAsync(string userId)
+        {
+            var user = this.userRepo.All().FirstOrDefault(x => x.Id == userId);
+
+            if (user != null)
+            {
+                user.ProfilePictureUrl = null;
+            }
+
+            await this.userRepo.SaveChangesAsync();
+        }
+
+        public async Task UpdateUserCoverPhotoAsync(string userId, UpdateCoverPhotoInputModel inputModel)
+        {
+            var user = this.userRepo.All().FirstOrDefault(x => x.Id == userId);
+
+            if (user != null)
+            {
+                user.CoverPhotoUrl = inputModel.CoverPhoto.FileName;
+            }
+
+            await this.userRepo.SaveChangesAsync();
+        }
+
         public async Task UpdateUserAboutAsync(string userId, string aboutDesc)
         {
             var user = this.userRepo.All().FirstOrDefault(x => x.Id == userId);

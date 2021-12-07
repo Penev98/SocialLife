@@ -4,6 +4,7 @@ namespace SocialLife.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using Microsoft.AspNetCore.Identity;
     using SocialLife.Data.Common.Models;
 
@@ -42,6 +43,8 @@ namespace SocialLife.Data.Models
         public string LastName { get; set; }
 
         public string ProfilePictureUrl { get; set; }
+
+        public string CoverPhotoUrl { get; set; }
 
         [MaxLength(50)]
         public string Country { get; set; }

@@ -9,6 +9,7 @@
 
     public interface IPictureService
     {
-        public Task SaveProfilePictureAsync(IFormFile profilePicture, string webRoot);
+        public Task SavePictureAsync(IFormFile profilePicture, string webRoot, string folderName);
+
     }
 }

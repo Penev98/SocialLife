@@ -336,3 +336,5 @@ src/Web/SocialLife.Web/wwwroot/ProfilePictures/Ango.jpg
 src/Web/SocialLife.Web/wwwroot/ProfilePictures/picec.jpg
 src/Web/SocialLife.Web/wwwroot/ProfilePictures/Penev.jpg
 src/Web/SocialLife.Web/wwwroot/ProfilePictures/2 табла с картини и снимки.jpg
+*.jpg
+*.png

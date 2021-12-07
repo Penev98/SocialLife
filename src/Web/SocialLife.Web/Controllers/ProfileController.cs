@@ -44,10 +44,11 @@
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             string webRoot = this.webHost.WebRootPath;
+            string profilePicturesFolder = "\\ProfilePictures\\";
 
             if (model.ProfilePicture != null)
             {
-                await this.pictureService.SaveProfilePictureAsync(model.ProfilePicture, webRoot);
+                await this.pictureService.SavePictureAsync(model.ProfilePicture, webRoot, profilePicturesFolder);
             }
 
             await this.profileService.UpdateUserInfoAsync(model, userId, model.ProfilePicture == null ? string.Empty : model.ProfilePicture.FileName);
