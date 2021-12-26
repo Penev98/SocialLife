@@ -360,3 +360,307 @@ img {
     .account-settings .about p {
         font-size: 0.825rem;
     }
+
+
+
+
+
+
+
+
+
+.login-container {
+    position: relative;
+    margin: 10% auto;
+    max-width: 340px;
+}
+
+    .login-container .loginbox {
+        position: relative;
+        width: 340px !important;
+        height: auto !important;
+        padding: 0 0 20px 0;
+        -webkit-box-shadow: 0 0 14px rgba(0,0,0,.1);
+        -moz-box-shadow: 0 0 14px rgba(0,0,0,.1);
+        box-shadow: 0 0 14px rgba(0,0,0,.1);
+    }
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.login-container .loginbox .loginbox-title {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 35px;
+    padding-top: 10px;
+    font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
+    font-size: 20px;
+    font-weight: normal;
+    color: #444;
+}
+
+.login-container .loginbox .loginbox-social {
+    padding: 0 10px 10px;
+    text-align: center;
+}
+
+    .login-container .loginbox .loginbox-social .social-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: #a9a9a9;
+        margin-top: 10px;
+    }
+
+    .login-container .loginbox .loginbox-social .social-buttons {
+        height: 80px;
+        padding: 15px 35px;
+        text-align: center;
+    }
+
+        .login-container .loginbox .loginbox-social .social-buttons .button-facebook {
+            float: left;
+            border: 2px solid #3b5998;
+            color: #3b5998;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 30px;
+            background-color: #fff;
+        }
+
+        .login-container .loginbox .loginbox-social .social-buttons .button-twitter {
+            float: left;
+            border: 2px solid #29c1f6;
+            color: #29c1f6;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 30px;
+            background-color: #fff;
+        }
+
+        .login-container .loginbox .loginbox-social .social-buttons .button-google {
+            float: left;
+            border: 2px solid #ef4f1d;
+            color: #ef4f1d;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-right: 30px;
+            background-color: #fff;
+        }
+
+        .login-container .loginbox .loginbox-social .social-buttons .button-facebook i {
+            font-size: 26px;
+            line-height: 50px;
+        }
+
+        .login-container .loginbox .loginbox-social .social-buttons .button-twitter i {
+            font-size: 26px;
+            line-height: 50px;
+        }
+
+        .login-container .loginbox .loginbox-social .social-buttons .button-google i {
+            font-size: 26px;
+            line-height: 50px;
+        }
+
+.login-container .loginbox .loginbox-or {
+    position: relative;
+    text-align: center;
+    height: 20px;
+}
+
+    .login-container .loginbox .loginbox-or .or-line {
+        position: absolute;
+        height: 1px;
+        top: 10px;
+        left: 40px;
+        right: 40px;
+        background-color: #ccc;
+    }
+
+    .login-container .loginbox .loginbox-or .or {
+        position: absolute;
+        top: 0;
+        -lh-property: 0;
+        left: -webkit-calc(50% - 25px);
+        left: -moz-calc(50% - 25px);
+        left: calc(50% - 25px);
+        width: 50px;
+        height: 20px;
+        background-color: #fff;
+        color: #999;
+        margin: 0 auto;
+    }
+
+.login-container .loginbox .loginbox-textbox {
+    padding: 10px 40px;
+}
+
+    .login-container .loginbox .loginbox-textbox .form-control {
+        -webkit-border-radius: 3px !important;
+        -webkit-background-clip: padding-box !important;
+        -moz-border-radius: 3px !important;
+        -moz-background-clip: padding !important;
+        border-radius: 3px !important;
+        background-clip: padding-box !important;
+    }
+
+.login-container .loginbox .loginbox-forgot {
+    padding-left: 40px;
+}
+
+    .login-container .loginbox .loginbox-forgot a {
+        font-size: 11px;
+        color: #666;
+    }
+
+.login-container .loginbox .loginbox-submit {
+    padding: 10px 40px;
+}
+
+.login-container .loginbox .loginbox-signup {
+    text-align: center;
+    padding-top: 10px;
+}
+
+    .login-container .loginbox .loginbox-signup a {
+        font-size: 13px;
+        color: #666;
+    }
+
+.login-container .logobox {
+    width: 340px !important;
+    height: 50px !important;
+    padding: 5px;
+    margin-top: 15px;
+    -webkit-box-shadow: 0 0 14px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 0 14px rgba(0,0,0,.1);
+    box-shadow: 0 0 14px rgba(0,0,0,.1);
+    background-color: #fff;
+    text-align: left;
+}
+
+
+
+
+
+
+
+
+
+row {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.masthead-text {
+    height: 300px;
+}
+
+.form-control {
+    height: 45px;
+}
+
+select:hover {
+    color: #444645;
+    background: #ddd;
+}
+
+.login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+}
+
+.hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+#login-dp {
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow: hidden;
+    background-color: rgba(255,255,255,.8);
+}
+
+    #login-dp .help-block {
+        font-size: 12px
+    }
+
+    #login-dp .social-buttons {
+        margin: 12px 0
+    }
+
+        #login-dp .social-buttons a {
+            width: 49%;
+        }
+
+    #login-dp .form-group {
+        margin-bottom: 10px;
+    }
+
+.btn-fb {
+    color: #fff;
+    background-color: #3b5998;
+}
+
+    .btn-fb:hover {
+        color: #fff;
+        background-color: #496ebc
+    }
+
+.btn-tw {
+    color: #fff;
+    background-color: #55acee;
+}
+
+    .btn-tw:hover {
+        color: #fff;
+        background-color: #59b5fa;
+    }
+
+@media(max-width:768px) {
+    #login-dp {
+        background-color: inherit;
+        color: #fff;
+    }
+
+        #login-dp .bottom {
+            background-color: inherit;
+            border-top: 0 none;
+        }
+}
+
+.progress {
+    height: 5px;
+}
+
+.block-help {
+    font-weight: 300;
+}
+
+.hide {
+    display: none;
+}

@@ -32,12 +32,12 @@ namespace SocialLife.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        [Required]
+        //[Required]
         [MinLength(1)]
         [MaxLength(50)]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         [MinLength(1)]
         [MaxLength(50)]
         public string LastName { get; set; }

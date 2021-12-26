@@ -54,8 +54,7 @@
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
+            services.AddDatabaseDeveloperPageExceptionFilter();      
             services.AddSingleton(this.configuration);
 
             // Data repositories
@@ -69,6 +68,18 @@
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<IProfileService, ProfileService>();
             services.AddTransient<IPictureService, PictureService>();
+
+            services.AddAuthentication()
+                .AddFacebook(opt =>
+                {
+                    opt.AppId = "717020885943162";
+                    opt.AppSecret = "fc3c7ffed898301ff9910d42277cd505";
+                })
+                .AddGoogle(opt =>
+                {
+                    opt.ClientId = "792709849348-ofdmsto54r0o5n6v5j8pi60mma6ucouv.apps.googleusercontent.com";
+                    opt.ClientSecret = "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";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
