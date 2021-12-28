@@ -18,6 +18,7 @@
     using SocialLife.Data.Seeding;
     using SocialLife.Services.Data;
     using SocialLife.Services.Data.Pictures;
+    using SocialLife.Services.Data.Post;
     using SocialLife.Services.Data.Profile;
     using SocialLife.Services.Mapping;
     using SocialLife.Services.Messaging;

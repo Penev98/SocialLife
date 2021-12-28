@@ -1,4 +1,4 @@
-﻿namespace SocialLife.Services.Data
+﻿namespace SocialLife.Services.Data.Post
 {
     using System;
     using System.Collections.Generic;
