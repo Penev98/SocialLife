@@ -69,6 +69,7 @@
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<IProfileService, ProfileService>();
             services.AddTransient<IPictureService, PictureService>();
+            services.AddTransient<IPostLikesService, PostLikesService>();
 
             services.AddAuthentication()
                 .AddFacebook(opt =>

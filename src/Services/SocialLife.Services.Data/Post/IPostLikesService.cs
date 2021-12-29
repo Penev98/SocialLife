@@ -7,14 +7,16 @@
 
     public interface IPostLikesService
     {
-        public Task<bool> CheckUserPostLike(string postId, string userId);
+        public bool CheckUserPostLike(string postId, string userId);
 
-        public Task<bool> AddUserToPostLikes(string postId, string userId);
+        public Task AddUserToPostLikesAsync(string postId, string userId);
 
-        public Task<bool> RemoveUserFromPostLikes(string postId, string userId);
+        public Task RemoveUserFromPostLikesAsync(string postId, string userId);
 
-        public Task IncrementPostLikesCount(string postId);
+        public Task IncrementPostLikesCountAsync(string postId);
 
-        public Task DecrementPostLikesCount(string postId);
+        public Task DecrementPostLikesCountAsync(string postId);
+
+        public Task<int> PostLikesCount(string postId);
     }
 }

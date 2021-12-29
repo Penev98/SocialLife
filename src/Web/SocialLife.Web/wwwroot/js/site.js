@@ -1,4 +1,5 @@
-﻿document.querySelector('#submitPost').addEventListener('click',() => {
+﻿
+document.querySelector('#submitPost').addEventListener('click',() => {
 
     if (document.querySelector('#postContent').value == '') {
         alert('You cannot create an empty post.')
@@ -17,57 +18,73 @@ btns.forEach(x =>x.addEventListener('click', (event) => {
     
 }));
 
-let btnIsClicked = false;
+let likeButtons = [...document.querySelectorAll('#likeButton')];
+likeButtons.forEach(x => x.addEventListener('click', (event) => {
+    let targetButton = event.currentTarget;
+    let postId = targetButton.attributes.itemid.value;
 
-$(document).on('click', '#likeButton', function changeLike(event) {
+    let buttonRef = targetButton.parentNode;
 
-    let postId = "hello"; // Get the clicked post from the event target
+    if (targetButton.attributes.fill.value == 'none') {
+        targetButton.attributes.fill.value = 'red';
 
-        if (btnIsClicked != true) {
-            document.querySelector('#likeButton').style.fill = 'red';
-            btnIsClicked = true;
+        likePost(postId, buttonRef);
+    } else {
+        targetButton.attributes.fill.value = 'none';
 
-            //To-Do: increment likes count in the browser
-            likePost(postId);
-            
-        } else {
-            document.querySelector('#likeButton').style.fill = 'none';
-            btnIsClicked = false;
+        dislikePost(postId, buttonRef);
+    }
+}));
 
-            //To-Do: Decrement likes count in the browser
-            dislikePost(postId);
-        }  
-});
 
-function likePost(postId){
-    $.ajax({
-        type: "GET",
-        url: "/Posts/LikePost",
-        data: { postId: postId},
-        dataType: "json",
-        success: function (result) {
-            if (result) {
-                console.log("User liked post.");
+function likePost(postId,button) {
+        $.ajax({
+            type: "GET",
+            url: "/Posts/LikePost",
+            data: { postId: postId },
+            dataType: "json",
+            success: function (result) {
+                if (result) {
+                    console.log("User liked post.");
+                    updatePostLikesCount(postId, button)
+                }
+                else {
+                    console.log("Unsuccessful attempt at liking a post.")
+                }               
             }
-            else {
-                console.log("Unsuccessful attempt at liking a post.")
-            }
-        }
-    });
+        });
 }
 
-function dislikePost(postId) {
+function dislikePost(postId, button) {
+        $.ajax({
+            type: "GET",
+            url: "/Posts/DislikePost",
+            data: { postId: postId },
+            dataType: "json",
+            success: function (result) {
+                if (result) {
+                    console.log("User disliked post.");
+                    updatePostLikesCount(postId,button);
+                }
+                else {
+                    console.log("Unsuccessful attempt at disliking a post.")
+                }
+            }
+        });
+}
+
+function updatePostLikesCount(postId,button) {
     $.ajax({
         type: "GET",
-        url: "/Posts/DislikePost",
-        data: { postId: postId},
+        url: "/Posts/GetPostLikesCount",
+        data: { postId: postId },
         dataType: "json",
         success: function (result) {
-            if (result) {
-                console.log("User disliked post.");
+            if (result != -1) {
+                button.querySelector('#postLikesCount').textContent = `Like(${result})`;
             }
             else {
-                console.log("Unsuccessful attempt at disliking a post.")
+                console.log("Unsuccessful attempt at updating post likes count.")
             }
         }
     });
