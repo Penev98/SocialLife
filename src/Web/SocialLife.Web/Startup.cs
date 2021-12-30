@@ -17,6 +17,7 @@
     using SocialLife.Data.Repositories;
     using SocialLife.Data.Seeding;
     using SocialLife.Services.Data;
+    using SocialLife.Services.Data.Attachments;
     using SocialLife.Services.Data.Pictures;
     using SocialLife.Services.Data.Post;
     using SocialLife.Services.Data.Profile;
@@ -55,8 +56,10 @@
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
-            services.AddDatabaseDeveloperPageExceptionFilter();      
+            services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddSingleton(this.configuration);
+
+            services.AddCors();
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -70,6 +73,7 @@
             services.AddTransient<IProfileService, ProfileService>();
             services.AddTransient<IPictureService, PictureService>();
             services.AddTransient<IPostLikesService, PostLikesService>();
+            services.AddTransient<IAttachmentService, AttachmentService>();
 
             services.AddAuthentication()
                 .AddFacebook(opt =>

@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.Mvc;
     using SocialLife.Data.Models;
     using SocialLife.Services.Data;
+    using SocialLife.Services.Data.Attachments;
     using SocialLife.Services.Data.Pictures;
     using SocialLife.Services.Data.Profile;
     using SocialLife.Web.ViewModels;
@@ -23,19 +24,22 @@
         private readonly IProfileService profileService;
         private readonly IPictureService pictureService;
         private readonly IWebHostEnvironment webHost;
+        private readonly IAttachmentService attachmentService;
 
         public UserTimelineController(
             UserManager<ApplicationUser> userManager,
             IPostService postService,
             IProfileService profileService,
             IPictureService pictureService,
-            IWebHostEnvironment webHost)
+            IWebHostEnvironment webHost,
+            IAttachmentService attachmentService)
         {
             this.userManager = userManager;
             this.postService = postService;
             this.profileService = profileService;
             this.pictureService = pictureService;
             this.webHost = webHost;
+            this.attachmentService = attachmentService;
         }
 
         [Authorize]
@@ -51,9 +55,28 @@
         [HttpPost]
         public async Task<IActionResult> Index(CreatePostInputModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             string userId = await this.GetUserId();
 
-            await this.postService.CreatePostAsync(model, userId);
+            // create the post and add it to the db => get it's id
+            string createdPostId = await this.postService.CreatePostAsync(model, userId);
+
+            // check if the model has attachments
+            if (model.Attachments.Count > 0)
+            {
+                string webRootPath = this.webHost.WebRootPath;
+                string folderName = "\\PostAttachments\\";
+
+                // save the attachments in the file system
+                await this.pictureService.SavePictureAsync(model.Attachments, webRootPath, folderName);
+
+                // add ref for each attachment in the db
+                await this.attachmentService.CreateAttachmentAsync(model.Attachments, createdPostId, userId);
+            }
 
             return this.RedirectToAction("Index");
         }

@@ -13,6 +13,9 @@
         public string Url { get; set; }
 
         [Required]
+        public string FileExtension { get; set; }
+
+        [Required]
         public string PostId { get; set; }
 
         public virtual Post Post { get; set; }

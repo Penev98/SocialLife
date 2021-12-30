@@ -9,7 +9,7 @@ namespace SocialLife.Services.Data
 {
   public interface IPostService
     {
-        public Task CreatePostAsync(CreatePostInputModel model, string authorId);
+        public Task<string> CreatePostAsync(CreatePostInputModel model, string authorId);
 
         public IEnumerable<T> GetAllUserPosts<T>(string userId);
 

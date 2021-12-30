@@ -10,16 +10,30 @@
 
     public class PictureService : IPictureService
     {
-        public async Task SavePictureAsync(IFormFile profilePicture, string webRoot, string folderName)
+        public async Task SavePictureAsync(IFormFile picture, string webRoot, string folderName)
         {
-            string picPath = webRoot + folderName + profilePicture.FileName;
+            string picPath = webRoot + folderName + picture.FileName;
 
             using (FileStream fs = new FileStream(picPath, FileMode.Create))
             {
-                profilePicture.OpenReadStream();
-                await profilePicture.CopyToAsync(fs);
+                picture.OpenReadStream();
+                await picture.CopyToAsync(fs);
             }
 
+        }
+
+        public async Task SavePictureAsync(ICollection<IFormFile> pictures, string webRoot, string folderName)
+        {
+            foreach (var picture in pictures)
+            {
+                string picPath = webRoot + folderName + picture.FileName;
+
+                using (FileStream fs = new FileStream(picPath, FileMode.Create))
+                {
+                    picture.OpenReadStream();
+                    await picture.CopyToAsync(fs);
+                }
+            }
         }
     }
 }

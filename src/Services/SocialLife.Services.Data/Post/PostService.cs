@@ -21,7 +21,7 @@
             this.postsRepo = postsRepo;
         }
 
-        public async Task CreatePostAsync(CreatePostInputModel model, string authorId)
+        public async Task<string> CreatePostAsync(CreatePostInputModel model, string authorId)
         {
             Post postToCreate = new Post()
             {
@@ -32,6 +32,7 @@
 
             await this.postsRepo.AddAsync(postToCreate);
             await this.postsRepo.SaveChangesAsync();
+            return postToCreate.Id;
         }
 
         public async Task<bool> DeleteUserPostAsyns(string postId, string userId)
