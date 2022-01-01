@@ -57,7 +57,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(model);
+                return this.View("Index", model);
             }
 
             string userId = await this.GetUserId();

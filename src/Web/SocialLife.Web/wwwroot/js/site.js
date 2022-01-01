@@ -89,3 +89,33 @@ function updatePostLikesCount(postId,button) {
         }
     });
 }
+
+let pic = document.querySelector('#pic');
+const textArea = document.querySelector('#postContent');
+
+pic.addEventListener('click', () => {
+    const input = document.querySelector('#inputFile');
+    input.click();
+    console.log("clicked");
+
+});
+
+$(function () {
+    $(":file").change(function () {
+        if (this.files && this.files[0]) {
+            for (var i = 0; i < this.files.length; i++) {
+                if (!this.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
+                    alert('not an image');
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[i]);
+            }
+        }
+    });
+});
+
+function imageIsLoaded(e) {
+    $('#inner').append('<img width="125px" height="150px" style="margin-top:5px; margin-bottom:5px" src=' + e.target.result + '>');
+};

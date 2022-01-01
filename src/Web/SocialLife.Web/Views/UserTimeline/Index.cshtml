@@ -200,23 +200,45 @@
 
             <div class="col-md-8 col-xl-9 middle-wrapper">
                 <div class="row">
+                    @*<div class="col-lg-7 col-xl-12">
+                            <div class="card card-white grid-margin">
+                                <div class="card-body">
+                                    <form id="createPost" method="post">
+                                        <div class="post">
+                                            <textarea asp-for="Content" id="postContent" class="form-control" placeholder="Post" rows="4"></textarea>
+                                            <div class="post-options">
+                                                <a href="#"><i class="fa fa-camera fa-2x" id="pic"></i></a>
+                                                <a href="#"><i class="fas fa-video fa-2x" id="video"></i></a>
+                                                <button type="submit" id="submitPost" class="btn btn-outline-primary float-right" style="margin-top:10px">Create a Post</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>*@
+
                     <div class="col-lg-7 col-xl-12">
                         <div class="card card-white grid-margin">
                             <div class="card-body">
-                                <form id="createPost" method="post">
+                                <form id="createPost" method="post" enctype="multipart/form-data">
                                     <div class="post">
                                         <textarea asp-for="Content" id="postContent" class="form-control" placeholder="Post" rows="4"></textarea>
+                                        <input id="inputFile" type="file" multiple="multiple" asp-for="Attachments" style="display: none;" />
+                                        <div id="myImg" class="portrait">
+                                            <div id="inner"> </div>
+                                        </div>
                                         <div class="post-options">
-                                            <a href="#"><i class="fa fa-camera fa-2x" id="pic"></i></a>
-                                            <a href="#"><i class="fas fa-video fa-2x" id="video"></i></a>
+                                            <a id="pic" href="#"><i class="fa fa-camera fa-2x"></i></a>
+
+                                            <a><i class="fas fa-video fa-2x" id="video"></i></a>
                                             <button type="submit" id="submitPost" class="btn btn-outline-primary float-right" style="margin-top:10px">Create a Post</button>
+
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
 
                     @foreach (var item in this.ViewBag.Models)
                     {
@@ -272,7 +294,11 @@
                                 </div>
                                 <div class="card-body">
                                     <p id="content" class="mb-3 tx-14">@item.TextContent</p>
-                                    <img class="img-fluid" src="../../../assets/images/sample2.jpg" alt="">
+                                    @foreach (var att in item.Attachments)
+                                    {
+                                        <img class="img-fluid" src="/PostAttachments/@att.Url" alt="">
+                                    }
+
                                 </div>
                                 <div class="card-footer">
                                     <div class="d-flex post-actions">
@@ -384,5 +410,3 @@
         </div>
     </div>
 </div>-->
-
-
