@@ -1,0 +1,16 @@
+﻿@model ICollection<SocialLife.Web.ViewModels.Gallery.VideosGalleryViewModel>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-sm-6">
+                <div class="box rte">
+                    <h2 class="boxHeadline">Title: @item.PostTextContent</h2>
+                    <h3 class="boxHeadlineSub">Likes(@item.PostLikesCount)</h3>
+                    <video width="100%" height="281" src="/PostAttachments/@item.Url" controls="controls"></video>
+                </div>
+            </div>
+        }
+    </div>
+</div>

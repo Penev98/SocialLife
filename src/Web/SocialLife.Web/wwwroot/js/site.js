@@ -104,7 +104,7 @@ $(function () {
     $(":file").change(function () {
         if (this.files && this.files[0]) {
             for (var i = 0; i < this.files.length; i++) {
-                if (!this.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
+                if (!this.files[0].name.match(/.(jpg|jpeg|png|gif|mp4)$/i)) {
                     alert('not an image');
                     return;
                 }
@@ -117,5 +117,12 @@ $(function () {
 });
 
 function imageIsLoaded(e) {
-    $('#inner').append('<img width="125px" height="150px" style="margin-top:5px; margin-bottom:5px" src=' + e.target.result + '>');
+    
+    if (e.target.result.includes('data:video')) {
+        $('#inner').append('<video width="180" height="150" controls="controls" style="margin-top:5px; margin-bottom:5px" src=' + e.target.result + '></video>');
+    }
+    else {
+        $('#inner').append('<img width="125px" height="150px" style="margin-top:5px; margin-bottom:5px" src=' + e.target.result + '>');
+    }
+
 };

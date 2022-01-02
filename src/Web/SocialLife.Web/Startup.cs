@@ -18,6 +18,7 @@
     using SocialLife.Data.Seeding;
     using SocialLife.Services.Data;
     using SocialLife.Services.Data.Attachments;
+    using SocialLife.Services.Data.Gallery;
     using SocialLife.Services.Data.Pictures;
     using SocialLife.Services.Data.Post;
     using SocialLife.Services.Data.Profile;
@@ -74,6 +75,7 @@
             services.AddTransient<IPictureService, PictureService>();
             services.AddTransient<IPostLikesService, PostLikesService>();
             services.AddTransient<IAttachmentService, AttachmentService>();
+            services.AddTransient<IGalleryService, GalleryService>();
 
             services.AddAuthentication()
                 .AddFacebook(opt =>

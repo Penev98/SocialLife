@@ -11,5 +11,9 @@ namespace SocialLife.Web.ViewModels.Gallery
    public class PhotosGalleryViewModel : IMapFrom<Attachment>
     {
         public string Url { get; set; }
+
+        public string PostTextContent { get; set; }
+
+        public int PostLikesCount { get; set; }
     }
 }
